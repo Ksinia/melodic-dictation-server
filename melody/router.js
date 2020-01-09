@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const Melody = require("../melody/model");
 const authMiddleware = require("../auth/middleware");
-const fs = require("fs");
 
 const router = new Router();
 
@@ -28,13 +27,7 @@ router.get("/melody/:id", async (req, res, next) => {
   try {
     const melody = await Melody.findByPk(req.params.id);
 
-    fs.readFile(melody.url, "binary", function(err, data) {
-      const melodyToSend = {
-        ...melody.get({ plain: true }),
-        content: data
-      };
-      res.json(melodyToSend);
-    });
+    res.send(melody);
   } catch (error) {
     next(error);
   }
