@@ -18,4 +18,6 @@ app.use(signupRouter);
 app.use(loginRouter);
 app.use(melodyRouter);
 
+app.use("/music", express.static("media"));
+
 app.listen(port, () => console.log(`Listening on port: ${port}`));
