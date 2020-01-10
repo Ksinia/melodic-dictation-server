@@ -6,13 +6,13 @@ const router = new Router();
 
 // start a new dictation
 router.post(
-  "melody/:melodyId/dictation",
+  "/melody/:melodyId/dictation",
   authMiddleware,
   async (req, res, next) => {
     const user = req.user;
     try {
       const dictation = await Dictation.create({
-        melodyId: req.match.params.melodyId,
+        melodyId: req.params.melodyId,
         userId: user.id
       });
       res.send(dictation);
@@ -24,9 +24,10 @@ router.post(
 
 // get all dictations for this melody for this user
 router.get(
-  "melody/:melodyId/dictation",
+  "/melody/:melodyId/dictation",
   authMiddleware,
   async (req, res, next) => {
+    console.log("get dictations endpoint");
     const user = req.user;
     try {
       const dictation = await Dictation.findAll({
@@ -41,7 +42,7 @@ router.get(
 
 // get a certain dictations (for this user)
 router.get(
-  "melody/:melodyId/dictation/:dictationId",
+  "/melody/:melodyId/dictation/:dictationId",
   authMiddleware,
   async (req, res, next) => {
     try {
@@ -55,7 +56,7 @@ router.get(
 
 // submit user input for certain dictations (for this user)
 router.put(
-  "melody/:melodyId/dictation/:dictationId",
+  "/melody/:melodyId/dictation/:dictationId",
   authMiddleware,
   async (req, res, next) => {
     const user = req.user;
@@ -78,3 +79,5 @@ router.put(
     }
   }
 );
+
+module.exports = router;
