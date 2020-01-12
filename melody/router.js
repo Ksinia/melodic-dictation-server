@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Melody = require("../melody/model");
 const authMiddleware = require("../auth/middleware");
+const { convert, convertMidiToAbc } = require("./converter");
 
 const router = new Router();
 
@@ -26,8 +27,9 @@ router.get("/melody", async (req, res, next) => {
 router.get("/melody/:id", async (req, res, next) => {
   try {
     const melody = await Melody.findByPk(req.params.id);
-
-    res.send(melody);
+    const abc = await convert("." + melody.url);
+    console.log(abc);
+    res.send({ ...melody.dataValues, abc });
   } catch (error) {
     next(error);
   }

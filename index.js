@@ -20,6 +20,6 @@ app.use(loginRouter);
 app.use(melodyRouter);
 app.use(dictationRouter);
 
-app.use("/music", express.static("media"));
+app.use("/music", express.static("music"));
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
