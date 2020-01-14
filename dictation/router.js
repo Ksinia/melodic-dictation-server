@@ -1,6 +1,8 @@
 const { Router } = require("express");
 const Dictation = require("../dictation/model");
 const authMiddleware = require("../auth/middleware");
+const validaton = require("./validation");
+const Melody = require("../melody/model");
 
 const router = new Router();
 
@@ -60,12 +62,21 @@ router.put(
   async (req, res, next) => {
     const user = req.user;
     try {
-      const dictation = await Dictation.findByPk(req.params.dictationId);
+      const dictation = await Dictation.findByPk(req.params.dictationId, {
+        include: Melody
+      });
       if (dictation.userId == user.id) {
         // later there will be a logic for validating user input instead of saving input into db
         // and score will be sent to the user
+        console.log("dictation.melody.abcNotes", dictation.melody.abcNotes);
+        console.log("req.body.userInput", req.body.userInput);
+        const result = validaton(dictation.melody.abcNotes, req.body.userInput);
+        console.log("result in router", result);
+        const scorePercent =
+          (result.filter(Boolean).length / result.length) * 100;
         const updatedDictation = await dictation.update({
-          inputObject: req.body.userInput
+          inputObject: req.body.userInput,
+          score: scorePercent
         });
         res.send(updatedDictation);
       } else {
