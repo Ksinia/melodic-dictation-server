@@ -68,17 +68,14 @@ router.put(
       if (dictation.userId == user.id) {
         // later there will be a logic for validating user input instead of saving input into db
         // and score will be sent to the user
-        console.log("dictation.melody.abcNotes", dictation.melody.abcNotes);
-        console.log("req.body.userInput", req.body.userInput);
         const result = validaton(dictation.melody.abcNotes, req.body.userInput);
-        console.log("result in router", result);
-        const scorePercent =
+        let scorePercent =
           (result.filter(Boolean).length / result.length) * 100;
         const updatedDictation = await dictation.update({
           inputObject: req.body.userInput,
           score: scorePercent
         });
-        res.send(updatedDictation);
+        res.send({ ...updatedDictation.dataValues, result: result });
       } else {
         res.status(400).send({
           message: "You are not allowed to change this dictation"
