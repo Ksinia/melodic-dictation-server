@@ -28,7 +28,6 @@ router.get("/melody/:id", async (req, res, next) => {
   try {
     const melody = await Melody.findByPk(req.params.id);
     const abc = await convert("." + melody.url);
-    console.log(abc);
     res.send({ ...melody.dataValues, abc });
   } catch (error) {
     next(error);

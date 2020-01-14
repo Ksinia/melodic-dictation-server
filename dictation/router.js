@@ -27,7 +27,6 @@ router.get(
   "/melody/:melodyId/dictation",
   authMiddleware,
   async (req, res, next) => {
-    console.log("get dictations endpoint");
     const user = req.user;
     try {
       const dictation = await Dictation.findAll({
@@ -54,19 +53,19 @@ router.get(
   }
 );
 
-// submit user input for certain dictations (for this user)
+// submit user input for certain dictation (for this user)
 router.put(
   "/melody/:melodyId/dictation/:dictationId",
   authMiddleware,
   async (req, res, next) => {
     const user = req.user;
     try {
-      const dictation = await Dictation.findByPk(req.dicationId);
+      const dictation = await Dictation.findByPk(req.params.dictationId);
       if (dictation.userId == user.id) {
         // later there will be a logic for validating user input instead of saving input into db
         // and score will be sent to the user
-        const updatedDictation = dictation.update({
-          inputObject: req.body.inputObject
+        const updatedDictation = await dictation.update({
+          inputObject: req.body.userInput
         });
         res.send(updatedDictation);
       } else {
