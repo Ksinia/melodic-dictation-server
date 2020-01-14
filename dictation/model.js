@@ -4,7 +4,7 @@ const Melody = require("../melody/model");
 const User = require("../user/model");
 
 const Dictation = db.define("dictation", {
-  score: Sequelize.STRING,
+  score: Sequelize.INTEGER,
   inputObject: Sequelize.JSON
 });
 

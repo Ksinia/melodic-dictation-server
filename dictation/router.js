@@ -3,6 +3,8 @@ const Dictation = require("../dictation/model");
 const authMiddleware = require("../auth/middleware");
 const validaton = require("./validation");
 const Melody = require("../melody/model");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const router = new Router();
 
@@ -32,9 +34,40 @@ router.get(
     const user = req.user;
     try {
       const dictation = await Dictation.findAll({
-        where: { melodyId: req.match.params.melodyId, userId: user.id }
+        where: { melodyId: req.params.melodyId, userId: user.id }
       });
       res.send(dictation);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+// get stats for previous dictations for this melody for this user
+router.get(
+  "/melody/:melodyId/stats",
+  authMiddleware,
+  async (req, res, next) => {
+    const user = req.user;
+    try {
+      const all = await Dictation.count({
+        where: { melodyId: req.params.melodyId, userId: user.id }
+      });
+      const finished = await Dictation.count({
+        where: {
+          melodyId: req.params.melodyId,
+          userId: user.id,
+          score: { [Op.ne]: null }
+        }
+      });
+      // const successful = 100;
+      const successful = await Dictation.count({
+        where: {
+          melodyId: req.params.melodyId,
+          userId: user.id,
+          score: 100
+        }
+      });
+      res.send({ all, finished, successful });
     } catch (error) {
       next(error);
     }
@@ -69,8 +102,9 @@ router.put(
         // later there will be a logic for validating user input instead of saving input into db
         // and score will be sent to the user
         const result = validaton(dictation.melody.abcNotes, req.body.userInput);
-        let scorePercent =
-          (result.filter(Boolean).length / result.length) * 100;
+        let scorePercent = Math.round(
+          (result.filter(Boolean).length / result.length) * 100
+        );
         const updatedDictation = await dictation.update({
           inputObject: req.body.userInput,
           score: scorePercent
