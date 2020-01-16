@@ -2,6 +2,8 @@ const { Router } = require("express");
 const Melody = require("../melody/model");
 const authMiddleware = require("../auth/middleware");
 const { convert, convertMidiToAbc } = require("./converter");
+const Dictation = require("../dictation/model");
+const Sequelize = require("sequelize");
 
 const router = new Router();
 
@@ -17,7 +19,23 @@ router.post("/melody", authMiddleware, async (req, res, next) => {
 
 router.get("/melody", async (req, res, next) => {
   try {
-    const result = await Melody.findAll();
+    const result = await Melody.findAll({
+      attributes: {
+        include: [
+          [
+            Sequelize.fn("COUNT", Sequelize.col("dictations.id")),
+            "dictationsCount"
+          ]
+        ]
+      },
+      include: [
+        {
+          model: Dictation,
+          attributes: []
+        }
+      ],
+      group: ["melody.id"]
+    });
     res.send(result);
   } catch (error) {
     next(error);
