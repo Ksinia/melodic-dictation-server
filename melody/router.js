@@ -20,6 +20,8 @@ router.post("/melody", authMiddleware, async (req, res, next) => {
 router.get("/melody", async (req, res, next) => {
   try {
     const result = await Melody.findAll({
+      order: [["id", "ASC"]],
+
       attributes: {
         include: [
           [
