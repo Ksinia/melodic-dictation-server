@@ -11,6 +11,6 @@ const Melody = db.define("melody", {
   abcNotes: Sequelize.JSON
 });
 
-// melodies.map(melody => Melody.create(melody));
+melodies.map(melody => Melody.create(melody));
 
 module.exports = Melody;
