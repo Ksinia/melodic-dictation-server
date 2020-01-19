@@ -10,8 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     { tableName: "dictations" }
   );
   Dictation.associate = function(models) {
-    Dictation.belongsTo(models.User);
-    Dictation.belongsTo(models.Melody);
+    Dictation.belongsTo(models.User, {
+      foreignKey: {
+        name: "userId"
+      }
+    });
+    Dictation.belongsTo(models.Melody, {
+      foreignKey: {
+        name: "melodyId"
+      }
+    });
   };
   return Dictation;
 };

@@ -23,7 +23,7 @@ router.get("/melody", async (req, res, next) => {
       attributes: {
         include: [
           [
-            Sequelize.fn("COUNT", Sequelize.col("dictations.id")),
+            Sequelize.fn("COUNT", Sequelize.col("Dictations.id")),
             "dictationsCount"
           ]
         ]
@@ -34,7 +34,7 @@ router.get("/melody", async (req, res, next) => {
           attributes: []
         }
       ],
-      group: ["melody.id"]
+      group: ["Melody.id"]
     });
     res.send(result);
   } catch (error) {

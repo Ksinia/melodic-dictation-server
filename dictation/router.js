@@ -101,7 +101,7 @@ router.put(
       if (dictation.userId == user.id) {
         // later there will be a logic for validating user input instead of saving input into db
         // and score will be sent to the user
-        const result = validaton(dictation.melody.abcNotes, req.body.userInput);
+        const result = validaton(dictation.Melody.abcNotes, req.body.userInput);
         let scorePercent = Math.round(
           (result.filter(Boolean).length / result.length) * 100
         );

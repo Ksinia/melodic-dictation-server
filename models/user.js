@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     { tableName: "users" }
   );
   User.associate = function(models) {
-    User.hasMany(models.Dictation);
+    User.hasMany(models.Dictation, {
+      foreignKey: {
+        name: "userId"
+      }
+    });
   };
   return User;
 };
