@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { toJWT } = require("./jwt");
-const User = require("../user/model");
+const { User } = require("../models");
 const bcrypt = require("bcrypt");
 
 function login(res, next, name = null, password = null) {
