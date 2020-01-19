@@ -9,8 +9,8 @@ const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
 let sequelize;
-if (process.env.DATABASE_URL) {
-  sequelize = new Sequelize(process.env.DATABASE_URL, config);
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(
     config.database,
@@ -31,15 +31,11 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
-console.log(Object.keys(db));
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
-
-// sequelize.sync({ force: false }) // dont delete data on sync
-//   .then(() => console.log("DB synced"));
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
