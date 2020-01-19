@@ -1,9 +1,8 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const db = require("../models");
 
-const User = db.define("user", {
+const User = db.sequelize.define("user", {
   name: {
-    type: Sequelize.STRING,
+    type: db.Sequelize.STRING,
     allowNull: false,
     unique: true,
     validate: {
@@ -13,7 +12,7 @@ const User = db.define("user", {
       }
     }
   },
-  password: { type: Sequelize.STRING, allowNull: false }
+  password: { type: db.Sequelize.STRING, allowNull: false }
 });
 
 module.exports = User;

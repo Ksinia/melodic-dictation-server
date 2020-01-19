@@ -37,6 +37,9 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+// sequelize.sync({ force: false }) // dont delete data on sync
+//   .then(() => console.log("DB synced"));
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
