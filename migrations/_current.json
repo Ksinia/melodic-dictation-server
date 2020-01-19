@@ -28,7 +28,8 @@
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
                 },
-                "UserId": {
+                "userId": {
+                    "name": "userId",
                     "allowNull": true,
                     "references": {
                         "model": "users",
@@ -36,10 +37,11 @@
                     },
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
-                    "field": "UserId",
+                    "field": "userId",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "MelodyId": {
+                "melodyId": {
+                    "name": "melodyId",
                     "allowNull": true,
                     "references": {
                         "model": "melodies",
@@ -47,7 +49,7 @@
                     },
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
-                    "field": "MelodyId",
+                    "field": "melodyId",
                     "seqType": "Sequelize.INTEGER"
                 }
             },
@@ -97,7 +99,8 @@
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
                 },
-                "UserId": {
+                "userId": {
+                    "name": "userId",
                     "allowNull": true,
                     "references": {
                         "model": "users",
@@ -105,7 +108,7 @@
                     },
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
-                    "field": "UserId",
+                    "field": "userId",
                     "seqType": "Sequelize.INTEGER"
                 }
             },

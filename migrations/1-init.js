@@ -14,7 +14,7 @@ var Sequelize = require('sequelize');
 var info = {
     "revision": 1,
     "name": "noname",
-    "created": "2020-01-19T21:12:41.240Z",
+    "created": "2020-01-19T22:04:51.196Z",
     "comment": ""
 };
 
@@ -101,16 +101,17 @@ var migrationCommands = function(transaction) {
                         "field": "updatedAt",
                         "allowNull": false
                     },
-                    "UserId": {
+                    "userId": {
                         "type": Sequelize.INTEGER,
-                        "field": "UserId",
+                        "field": "userId",
                         "onUpdate": "CASCADE",
                         "onDelete": "SET NULL",
                         "references": {
                             "model": "users",
                             "key": "id"
                         },
-                        "allowNull": true
+                        "allowNull": true,
+                        "name": "userId"
                     }
                 },
                 {
@@ -148,27 +149,29 @@ var migrationCommands = function(transaction) {
                         "field": "updatedAt",
                         "allowNull": false
                     },
-                    "UserId": {
+                    "userId": {
                         "type": Sequelize.INTEGER,
-                        "field": "UserId",
+                        "field": "userId",
                         "onUpdate": "CASCADE",
                         "onDelete": "SET NULL",
                         "references": {
                             "model": "users",
                             "key": "id"
                         },
-                        "allowNull": true
+                        "allowNull": true,
+                        "name": "userId"
                     },
-                    "MelodyId": {
+                    "melodyId": {
                         "type": Sequelize.INTEGER,
-                        "field": "MelodyId",
+                        "field": "melodyId",
                         "onUpdate": "CASCADE",
                         "onDelete": "SET NULL",
                         "references": {
                             "model": "melodies",
                             "key": "id"
                         },
-                        "allowNull": true
+                        "allowNull": true,
+                        "name": "melodyId"
                     }
                 },
                 {
