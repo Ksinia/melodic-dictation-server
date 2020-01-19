@@ -1,11 +1,11 @@
 const { Router } = require("express");
-const Dictation = require("../dictation/model");
+const {
+  Dictation,
+  Melody,
+  Sequelize: { Op }
+} = require("../models");
 const authMiddleware = require("../auth/middleware");
 const validaton = require("./validation");
-const Melody = require("../melody/model");
-const Sequelize = require("sequelize");
-const Op = Sequelize.Op;
-
 const router = new Router();
 
 // start a new dictation
