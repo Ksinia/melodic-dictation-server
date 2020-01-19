@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const { Sequelize, Melody, Dictation } = require("../models");
 const authMiddleware = require("../auth/middleware");
-const { convert, convertMidiToAbc } = require("./converter");
+const convert = require("./converter");
 
 const router = new Router();
 
