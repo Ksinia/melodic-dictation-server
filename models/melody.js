@@ -1,4 +1,5 @@
 "use strict";
+// const melodies = require("./data");
 
 module.exports = (sequelize, DataTypes) => {
   const Melody = sequelize.define(
@@ -25,5 +26,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     });
   };
+  // Melody.count().then(count => {
+  //   if (count === 0) {
+  //     melodies.map(melody => Melody.create(melody));
+  //   }
+  // });
   return Melody;
 };
