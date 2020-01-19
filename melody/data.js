@@ -1,4 +1,4 @@
-module.exports = melodies = [
+module.exports = [
   {
     abcNotes: ["C2", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=100\nI:score Piano\nK:C",
