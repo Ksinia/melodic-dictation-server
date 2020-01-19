@@ -6,11 +6,6 @@ const {
 } = require("../models");
 const authMiddleware = require("../auth/middleware");
 const validaton = require("./validation");
-<<<<<<< HEAD
-=======
-const Melody = require("../melody/model");
-const { Op } = require("sequelize");
->>>>>>> Multiple review fixes
 const router = new Router();
 
 // start a new dictation
