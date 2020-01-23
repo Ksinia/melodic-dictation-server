@@ -21,12 +21,7 @@ router.get("/melody", async (req, res, next) => {
       order: [["id", "ASC"]],
 
       attributes: {
-        include: [
-          [
-            Sequelize.fn("COUNT", Sequelize.col("Dictations.id")),
-            "dictationsCount"
-          ]
-        ]
+        include: [[Sequelize.fn("COUNT", Sequelize.col("dictations.id")), "dictationsCount"]]
       },
       include: [
         {
