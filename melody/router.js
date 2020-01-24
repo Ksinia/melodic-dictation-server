@@ -2,18 +2,11 @@ const { Router } = require("express");
 const { Sequelize, Melody, Dictation } = require("../models");
 const authMiddleware = require("../auth/middleware");
 const convert = require("./converter");
+const createMelody = require("./create-melody");
 
 const router = new Router();
 
-router.post("/melody", authMiddleware, async (req, res, next) => {
-  const user = req.user;
-  try {
-    const melody = await Melody.create({ ...req.body, userId: user.id });
-    res.send(melody);
-  } catch (error) {
-    next(error);
-  }
-});
+router.post("/melody", authMiddleware, createMelody);
 
 router.get("/melody", async (req, res, next) => {
   try {
@@ -21,12 +14,7 @@ router.get("/melody", async (req, res, next) => {
       order: [["id", "ASC"]],
 
       attributes: {
-        include: [
-          [
-            Sequelize.fn("COUNT", Sequelize.col("Dictations.id")),
-            "dictationsCount"
-          ]
-        ]
+        include: [[Sequelize.fn("COUNT", Sequelize.col("Dictations.id")), "dictationsCount"]]
       },
       include: [
         {
