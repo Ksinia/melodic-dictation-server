@@ -13,11 +13,12 @@ router.post(
   "/melody/:melodyId/dictation",
   authMiddleware,
   async (req, res, next) => {
-    const user = req.user;
+    const { id: userId } = req.user;
+    const { melodyId } = req.params;
     try {
       const dictation = await Dictation.create({
-        melodyId: req.params.melodyId,
-        userId: user.id
+        melodyId,
+        userId
       });
       res.send(dictation);
     } catch (error) {
@@ -47,23 +48,24 @@ router.get(
   "/melody/:melodyId/stats",
   authMiddleware,
   async (req, res, next) => {
-    const user = req.user;
+    const { id: userId } = req.user;
+    const { melodyId } = req.params;
     try {
       const all = await Dictation.count({
-        where: { melodyId: req.params.melodyId, userId: user.id }
+        where: { melodyId, userId }
       });
       const finished = await Dictation.count({
         where: {
-          melodyId: req.params.melodyId,
-          userId: user.id,
+          melodyId,
+          userId,
           score: { [Op.ne]: null }
         }
       });
       // const successful = 100;
       const successful = await Dictation.count({
         where: {
-          melodyId: req.params.melodyId,
-          userId: user.id,
+          melodyId,
+          userId,
           score: 100
         }
       });
@@ -98,9 +100,7 @@ router.put(
       const dictation = await Dictation.findByPk(req.params.dictationId, {
         include: Melody
       });
-      if (dictation.userId == user.id) {
-        // later there will be a logic for validating user input instead of saving input into db
-        // and score will be sent to the user
+      if (dictation.userId === user.id) {
         const result = validaton(dictation.Melody.abcNotes, req.body.userInput);
         let scorePercent = Math.round(
           (result.filter(Boolean).length / result.length) * 100
