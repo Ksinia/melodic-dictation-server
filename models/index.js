@@ -3,6 +3,8 @@
 const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
+const Umzug = require("umzug");
+
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
@@ -20,6 +22,19 @@ if (config.use_env_variable) {
   );
 }
 
+// apply migrations
+const umzug = new Umzug({
+  storage: "sequelize",
+  storageOptions: {
+    sequelize: sequelize
+  },
+  migrations: {
+    params: [sequelize.getQueryInterface(), Sequelize],
+    path: path.join(__dirname, "../migrations")
+  }
+});
+umzug.up();
+
 fs.readdirSync(__dirname)
   .filter(file => {
     return (
@@ -36,9 +51,6 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
-
-// sequelize.sync({ force: false }) // dont delete data on sync
-//   .then(() => console.log("DB synced"));
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
