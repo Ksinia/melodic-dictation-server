@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { toJWT } = require("./jwt");
-const { User } = require("../models");
+const { User, Melody, Dictation, Sequelize } = require("../models");
 const bcrypt = require("bcrypt");
 
 async function login(res, next, name = null, password = null) {
@@ -10,7 +10,27 @@ async function login(res, next, name = null, password = null) {
     });
   } else {
     try {
-      const user = await User.findOne({ where: { name: name } });
+      const user = await User.findOne({
+        where: { name: name },
+        group: ["User.id", "Melodies.id"],
+        include: {
+          model: Melody,
+          attributes: {
+            include: [
+              [
+                Sequelize.fn("COUNT", Sequelize.col("Melodies.Dictations.id")),
+                "dictationsCount"
+              ]
+            ]
+          },
+          include: [
+            {
+              model: Dictation,
+              attributes: []
+            }
+          ]
+        }
+      });
       if (!user) {
         res.status(400).send({
           message: "User with that name does not exist"
@@ -22,7 +42,12 @@ async function login(res, next, name = null, password = null) {
         const jwt = toJWT({ userId: user.id });
         const action = {
           type: "LOGIN_SUCCESS",
-          payload: { id: user.id, name: user.name, jwt: jwt }
+          payload: {
+            id: user.id,
+            name: user.name,
+            jwt: jwt,
+            melodies: user.Melodies
+          }
         };
         const string = JSON.stringify(action);
         res.send(string);
