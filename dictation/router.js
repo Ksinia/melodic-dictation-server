@@ -102,12 +102,12 @@ router.put(
       });
       if (dictation.userId === user.id) {
         const result = validaton(dictation.Melody.abcNotes, req.body.userInput);
-        let scorePercent = Math.round(
+        const score = Math.round(
           (result.filter(Boolean).length / result.length) * 100
         );
         const updatedDictation = await dictation.update({
           inputObject: req.body.userInput,
-          score: scorePercent,
+          score,
         });
         res.send({ ...updatedDictation.dataValues, result: result });
       } else {
