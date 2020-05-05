@@ -3,55 +3,55 @@ module.exports = [
     abcNotes: ["C2", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=100\nI:score Piano\nK:C",
     name: "Simple dictation",
-    url: "/music/dictation_1.mid"
+    url: "/music/dictation_1.mid",
   },
   {
     abcNotes: ["C2", "C2", "|", "D2", "D2", "|", "E2", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=90\nI:score Piano\nK:C",
     name: "Melodic dictation 1",
-    url: "/music/1.mid"
+    url: "/music/1.mid",
   },
   {
     abcNotes: ["C2", "D2", "|", "E2", "E2", "|", "F2", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=90\nI:score Piano\nK:C",
     name: "Melodic dictation 2",
-    url: "/music/2.mid"
+    url: "/music/2.mid",
   },
   {
     abcNotes: ["C2", "D2", "|", "E2", "F2", "|", "G2", "E2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=90\nI:score Piano\nK:C",
     name: "Melodic dictation 3",
-    url: "/music/3.mid"
+    url: "/music/3.mid",
   },
   {
     abcNotes: ["C2", "E2", "|", "G2", "F2", "|", "E2", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=90\nI:score Piano\nK:C",
     name: "Melodic dictation 4",
-    url: "/music/4.mid"
+    url: "/music/4.mid",
   },
   {
     abcNotes: ["C2", "D2", "|", "E2", "G2", "|", "F2", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=90\nI:score Piano\nK:C",
     name: "Melodic dictation 5",
-    url: "/music/5.mid"
+    url: "/music/5.mid",
   },
   {
     abcNotes: ["C2", "D2", "|", "E2", "G2", "|", "C2", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=90\nI:score Piano\nK:C",
     name: "Melodic dictation 6",
-    url: "/music/6.mid"
+    url: "/music/6.mid",
   },
   {
     abcNotes: ["C2", "D2", "|", "E2", "F2", "|", "G", "F", "E", "D", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=83\nI:score Piano\nK:C",
     name: "Melodic dictation 7",
-    url: "/music/7.mid"
+    url: "/music/7.mid",
   },
   {
     abcNotes: ["C2", "C2", "|", "G2", "G2", "|", "F", "E", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=83\nI:score Piano\nK:C",
     name: "Melodic dictation 8",
-    url: "/music/8.mid"
+    url: "/music/8.mid",
   },
   {
     abcNotes: [
@@ -68,11 +68,11 @@ module.exports = [
       "E",
       "D",
       "|",
-      "C4"
+      "C4",
     ],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=75\nI:score Piano\nK:C",
     name: "Melodic dictation 9",
-    url: "/music/9.mid"
+    url: "/music/9.mid",
   },
   {
     abcNotes: [
@@ -92,11 +92,11 @@ module.exports = [
       "|",
       "E",
       "D",
-      "C2"
+      "C2",
     ],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=55\nI:score Piano\nK:C",
     name: "Melodic dictation 10",
-    url: "/music/10.mid"
+    url: "/music/10.mid",
   },
   {
     abcNotes: [
@@ -112,11 +112,11 @@ module.exports = [
       "G",
       "|",
       "E2",
-      "C2"
+      "C2",
     ],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=55\nI:score Piano\nK:C",
     name: "Melodic dictation 11",
-    url: "/music/11.mid"
+    url: "/music/11.mid",
   },
   {
     abcNotes: [
@@ -135,30 +135,30 @@ module.exports = [
       "|",
       "D",
       "D",
-      "C2"
+      "C2",
     ],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=55\nI:score Piano\nK:C",
     name: "Melodic dictation 12",
-    url: "/music/12.mid"
+    url: "/music/12.mid",
   },
   {
     abcNotes: ["E2", "D", "E", "|", "C2", "G2", "|", "E2", "D", "D", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=55\nI:score Piano\nK:C",
     name: "Melodic dictation 13",
-    url: "/music/13.mid"
+    url: "/music/13.mid",
   },
   {
     abcNotes: ["C2", "C", "D", "|", "E2", "D2", "|", "C2", "B,2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=55\nI:score Piano\nK:C",
     name: "Melodic dictation 14",
-    url: "/music/14.mid"
+    url: "/music/14.mid",
   },
   {
     abcNotes: ["C2", "D2", "|", "E", "F", "G2", "|", "F", "E", "D2", "|", "C4"],
     abcStart: "X:1\nM:2/4\nL:1/8\nQ:1/4=55\nI:score Piano\nK:C",
     name: "Melodic dictation 15",
-    url: "/music/15.mid"
-  }
+    url: "/music/15.mid",
+  },
 
   //   {
   //     name: "Melodic dictation 16",

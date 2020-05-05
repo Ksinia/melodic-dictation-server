@@ -10,24 +10,24 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: {
             args: [1, 99],
-            msg: "Username should not be empty"
-          }
-        }
+            msg: "Username should not be empty",
+          },
+        },
       },
-      password: { type: DataTypes.STRING, allowNull: false }
+      password: { type: DataTypes.STRING, allowNull: false },
     },
     { tableName: "users" }
   );
-  User.associate = function(models) {
+  User.associate = function (models) {
     User.hasMany(models.Dictation, {
       foreignKey: {
-        name: "userId"
-      }
+        name: "userId",
+      },
     });
     User.hasMany(models.Melody, {
       foreignKey: {
-        name: "userId"
-      }
+        name: "userId",
+      },
     });
   };
   return User;

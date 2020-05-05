@@ -5,20 +5,20 @@ module.exports = (sequelize, DataTypes) => {
     "Dictation",
     {
       score: DataTypes.INTEGER,
-      inputObject: DataTypes.JSON
+      inputObject: DataTypes.JSON,
     },
     { tableName: "dictations" }
   );
-  Dictation.associate = function(models) {
+  Dictation.associate = function (models) {
     Dictation.belongsTo(models.User, {
       foreignKey: {
-        name: "userId"
-      }
+        name: "userId",
+      },
     });
     Dictation.belongsTo(models.Melody, {
       foreignKey: {
-        name: "melodyId"
-      }
+        name: "melodyId",
+      },
     });
   };
   return Dictation;

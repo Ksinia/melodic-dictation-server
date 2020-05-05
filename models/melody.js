@@ -10,25 +10,25 @@ module.exports = (sequelize, DataTypes) => {
       description: DataTypes.STRING,
       level: DataTypes.INTEGER,
       abcStart: DataTypes.STRING,
-      abcNotes: DataTypes.JSON
+      abcNotes: DataTypes.JSON,
     },
     { tableName: "melodies" }
   );
-  Melody.associate = function(models) {
+  Melody.associate = function (models) {
     Melody.hasMany(models.Dictation, {
       foreignKey: {
-        name: "melodyId"
-      }
+        name: "melodyId",
+      },
     });
     Melody.belongsTo(models.User, {
       foreignKey: {
-        name: "userId"
-      }
+        name: "userId",
+      },
     });
   };
-  Melody.count().then(count => {
+  Melody.count().then((count) => {
     if (count === 0) {
-      melodies.map(melody => Melody.create(melody));
+      melodies.map((melody) => Melody.create(melody));
     }
   });
   return Melody;

@@ -24,17 +24,17 @@ router.get("/melody", async (req, res, next) => {
         include: [
           [
             Sequelize.fn("COUNT", Sequelize.col("Dictations.id")),
-            "dictationsCount"
-          ]
-        ]
+            "dictationsCount",
+          ],
+        ],
       },
       include: [
         {
           model: Dictation,
-          attributes: []
-        }
+          attributes: [],
+        },
       ],
-      group: ["Melody.id"]
+      group: ["Melody.id"],
     });
     res.send(result);
   } catch (error) {

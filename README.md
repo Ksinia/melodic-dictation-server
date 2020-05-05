@@ -1,10 +1,9 @@
 # :ear::musical_note: Melodic Dictation :musical_note::ear:
 
-This is the backend of Melodic Dictation application. 
+This is the backend of Melodic Dictation application.
 [Here is the frontend](https://github.com/Ksinia/melodic-dictation-client).
 
 ## [Check out the deployed version here!](https://melodic-dictation.netlify.com)
-
 
 Melodic dictation is an important excercise in process of learning solfeggio.
 In this app user can listen to the melodies, input the notes and get the validation of his input compared to the original notes.

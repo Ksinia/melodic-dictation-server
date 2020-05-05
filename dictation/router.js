@@ -2,7 +2,7 @@ const { Router } = require("express");
 const {
   Dictation,
   Melody,
-  Sequelize: { Op }
+  Sequelize: { Op },
 } = require("../models");
 const authMiddleware = require("../auth/middleware");
 const validaton = require("./validation");
@@ -18,7 +18,7 @@ router.post(
     try {
       const dictation = await Dictation.create({
         melodyId,
-        userId
+        userId,
       });
       res.send(dictation);
     } catch (error) {
@@ -35,7 +35,7 @@ router.get(
     const user = req.user;
     try {
       const dictation = await Dictation.findAll({
-        where: { melodyId: req.params.melodyId, userId: user.id }
+        where: { melodyId: req.params.melodyId, userId: user.id },
       });
       res.send(dictation);
     } catch (error) {
@@ -52,22 +52,22 @@ router.get(
     const { melodyId } = req.params;
     try {
       const all = await Dictation.count({
-        where: { melodyId, userId }
+        where: { melodyId, userId },
       });
       const finished = await Dictation.count({
         where: {
           melodyId,
           userId,
-          score: { [Op.ne]: null }
-        }
+          score: { [Op.ne]: null },
+        },
       });
       // const successful = 100;
       const successful = await Dictation.count({
         where: {
           melodyId,
           userId,
-          score: 100
-        }
+          score: 100,
+        },
       });
       res.send({ all, finished, successful });
     } catch (error) {
@@ -98,7 +98,7 @@ router.put(
     const user = req.user;
     try {
       const dictation = await Dictation.findByPk(req.params.dictationId, {
-        include: Melody
+        include: Melody,
       });
       if (dictation.userId === user.id) {
         const result = validaton(dictation.Melody.abcNotes, req.body.userInput);
@@ -107,12 +107,12 @@ router.put(
         );
         const updatedDictation = await dictation.update({
           inputObject: req.body.userInput,
-          score: scorePercent
+          score: scorePercent,
         });
         res.send({ ...updatedDictation.dataValues, result: result });
       } else {
         res.status(400).send({
-          message: "You are not allowed to change this dictation"
+          message: "You are not allowed to change this dictation",
         });
       }
     } catch (error) {
