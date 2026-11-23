@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "secret",
-    "database": "postgres",
+    "database": "melodic_dictation",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "logging": false

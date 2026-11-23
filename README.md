@@ -13,7 +13,7 @@ In this app user can listen to the melodies, input the notes and get the validat
 The server sends melodies to the client, creates a dictation with a melody, validates an answer of a user and saves information about dictations into database.
 This project was created using Express.js server and Sequelize ORM.
 
-## instalation
+## Installation
 
 - Run `npm install`.
 - Connect to a local database (configuration is in the file `/config/config.json`).
